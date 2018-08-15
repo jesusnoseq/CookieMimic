@@ -8,8 +8,6 @@ browser.browserAction.onClicked.addListener(handleClick);
 
 
 /************ Load and update domain list */
-const ORIGIN = "origin";
-const TARGET = "target";
 var domains;
 
 function getDomains(){
@@ -20,9 +18,8 @@ function getDomains(){
 function restoreOptions() {
     var storeGet =browser.storage.local.get();
     storeGet.then((res) => {
-      console.log("sync.get", res);
       processDomainList(res.domains)
-      console.log("procesed", domains);
+      console.log("domains procesed", domains);
     });
 }
 
@@ -78,7 +75,7 @@ function setCookie(cookie,newDomain){
   newCookie.url=HTTPPrefix+newDomain;
   delete newCookie.hostOnly;
   delete newCookie.session;
-  
+
   var setting =browser.cookies.set(newCookie);
   setting.then(notify(cookie,newDomain), fallback);
 }
@@ -99,7 +96,7 @@ function fallback(err){
 /************ User notifications */
 
 function notify(cookie,newDomain){ 
-  console.log("Cookie",cookie.name,"cloned to",newDomain,cookie);
+  console.log("Cookie",cookie.name,"cloned to",newDomain);
   n=browser.notifications.create({
     "type": "basic",
     "iconUrl": browser.extension.getURL("icons/icon48.png"),
