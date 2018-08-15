@@ -1,0 +1,26 @@
+#editDomainsForm{
+    width: 500px;
+}
+
+.addButton{
+    background-image: url(../icons/New.svg);
+    background-position: calc(100% - 7px) center;
+    background-repeat: no-repeat;
+    padding-inline-end: 24px;
+    text-overflow: ellipsis;
+    height: 24px;
+}
+
+input[type="text"]{
+    margin: 0.5em;
+}
+
+.deleteButton{
+    background-image: url(../icons/Delete.svg);
+    background-position: calc(100% - 7px) center;
+    background-repeat: no-repeat;
+    padding-inline-end: 24px;
+    text-overflow: ellipsis;
+    height: 24px;
+    margin-right: -14px;
+}

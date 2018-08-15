@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="editPage.css">
+</head>
+
+<body>
+  <header class="panel-section panel-section-header">
+    <div class="text-section-header">Domains</div>
+  </header>
+  <form id="editDomainsForm" class="panel-section-formElements">
+    <div class="panel-formElements-item">
+      <input type="text" id="originDomain" class="" placeholder="origin domain">
+      <input type="text" id="targetDomain" class="" placeholder="target domain">
+      <button class="addButton" type="submit"></button>
+    </div>
+    <div id="domainsList" class="panel-section panel-section-list">
+      <!-- saved domains list will fill this div -->
+    </div>
+  </form>
+  <div id="extContent"></div>
+  <script src="editDomains.js"></script>
+</body>
+
+</html>
