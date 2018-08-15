@@ -3,7 +3,7 @@
 }
 
 .addButton{
-    background-image: url(../icons/New.svg);
+    background-image: url(../icons/new.svg);
     background-position: calc(100% - 7px) center;
     background-repeat: no-repeat;
     padding-inline-end: 24px;
@@ -16,7 +16,7 @@ input[type="text"]{
 }
 
 .deleteButton{
-    background-image: url(../icons/Delete.svg);
+    background-image: url(../icons/delete.svg);
     background-position: calc(100% - 7px) center;
     background-repeat: no-repeat;
     padding-inline-end: 24px;
