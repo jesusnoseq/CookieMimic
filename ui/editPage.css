@@ -1,5 +1,5 @@
 #editDomainsForm{
-    width: 500px;
+    width: 650px;
 }
 
 .addButton{
@@ -23,4 +23,10 @@ input[type="text"]{
     text-overflow: ellipsis;
     height: 24px;
     margin-right: -14px;
+}
+
+.panel-section-list > div{
+    height: 50px;
+    -webkit-user-select: all; /* Covers Blink-land & Firefox (yup) */
+    user-select: all; /* Someday */
 }

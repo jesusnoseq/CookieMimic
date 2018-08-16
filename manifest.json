@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "CookieMimic",
-  "version": "1.0.1",
+  "version": "1.0.2",
   
   "homepage_url": "https://github.com/jesusnoseq/CookieMimic",
   "description": "Mimics the behavior, clone or remove, of cookies in a domain to another",

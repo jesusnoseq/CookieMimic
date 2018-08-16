@@ -17,17 +17,23 @@ function generateForm(domains){
         domainsListContainer.removeChild(domainsListContainer.firstChild);
     }
     domains.forEach(d => {
-        domainsListContainer.appendChild(generateField(d));
+        let o=d.split(";")[0]
+        let t=d.split(";")[1]
+        domainsListContainer.appendChild(generateField(o,t));
     });
 }
 
-function generateField(domain){
+function generateField(domainOrigin,domainTarget){
     let node = document.createElement("div");
     node.classList.add("panel-list-item");
     let textConainer=document.createElement("div");
     textConainer.classList.add("text");
-    let textnode = document.createTextNode(domain);
-    textConainer.appendChild(textnode);
+    let textnodeOrigin = document.createTextNode(domainOrigin);
+    let separator = document.createTextNode(";");
+    let textnodeTarget = document.createTextNode(domainTarget);
+    textConainer.appendChild(textnodeOrigin);
+    textConainer.appendChild(separator);
+    textConainer.appendChild(textnodeTarget);
     node.appendChild(textConainer);
     let button=document.createElement("button");
     button.classList.add("deleteButton");
@@ -43,8 +49,8 @@ function addForm(e){
     e.preventDefault();
     let originInput=document.querySelector("#originDomain");
     let targetInput=document.querySelector("#targetDomain");
-    if(originInput.value!=="" && targetInput.value!=""){
-        domainsListContainer.prepend(generateField(originInput.value +";"+targetInput.value));
+    if(originInput.value!=="" && targetInput.value!="" && IsValidDomain(originInput.value) && IsValidDomain(targetInput.value)) {
+        domainsListContainer.prepend(generateField(originInput.value,targetInput.value));
 
         originInput.value="";
         targetInput.value="";
@@ -52,12 +58,18 @@ function addForm(e){
     }
 }
 
+// Thanks to https://stackoverflow.com/a/14646633/1542778
+function IsValidDomain(domain) { 
+    var re = new RegExp(/^\.?((?:(?:(?:\w[\.\-\+]?)*)\w)+)((?:(?:(?:\w[\.\-\+]?){0,62})\w)+)\.(\w{2,6})$/); 
+    return domain.match(re);
+} 
+
 
 function deleteForm(e){
-    e.preventDefault();
     if (!e.target.classList.contains("deleteButton")){
-        return;
+         return false;
     }
+    e.preventDefault();
     e.target.parentNode.remove()
 
     save(e);

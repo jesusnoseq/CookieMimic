@@ -48,6 +48,8 @@ browser.runtime.onMessage.addListener(handleUpdateDomainsMessage);
 /************ Cookie copy remove */
 const ExplicitChangeEvent="explicit";
 const HTTPPrefix="http://";
+const HTTPSPrefix="https://";
+const secure=true;
 
 browser.cookies.onChanged.addListener(function(changeInfo) {
   
@@ -57,7 +59,7 @@ browser.cookies.onChanged.addListener(function(changeInfo) {
 
   newDomain=getDomains()[changeInfo.cookie.domain]
   console.log('Cookie changed: ',changeInfo);
-  if(changeInfo.cookie.removed){
+  if(changeInfo.removed){
     removeCookie(changeInfo.cookie,newDomain)
   }else{
     setCookie(changeInfo.cookie,newDomain);
@@ -72,19 +74,21 @@ function isInDomainList(domain){
 function setCookie(cookie,newDomain){
   newCookie=Object.assign({}, cookie);
   newCookie.domain=newDomain;
-  newCookie.url=HTTPPrefix+newDomain;
+  newCookie.url=((secure)?HTTPSPrefix:HTTPSPrefix)+newDomain
   delete newCookie.hostOnly;
   delete newCookie.session;
 
   var setting =browser.cookies.set(newCookie);
+  console.log("new cookie! ",newCookie);
   setting.then(notify(cookie,newDomain), fallback);
 }
 
 function removeCookie(cookie,newDomain){
+  url=((secure)?HTTPSPrefix:HTTPSPrefix)+newDomain
   var removing =browser.cookies.remove({
     name: cookie.name,
     domain:newDomain,
-    url:HTTPPrefix+newDomain
+    url:url
   });
   removing.then(notify(cookie,newDomain), fallback);
 }
