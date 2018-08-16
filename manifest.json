@@ -19,7 +19,7 @@
   },
 
   "browser_action": {
-    "default_icon": "icons/Icon48.png",
+    "default_icon": "icons/icon48.png",
     "default_title": "CookieMimic"
   },
 
